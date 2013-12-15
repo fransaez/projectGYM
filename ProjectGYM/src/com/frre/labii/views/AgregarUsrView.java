@@ -4,7 +4,7 @@
  */
 
 /*
- * AgregarUsuarioView.java
+ * AgregarUsrView.java
  *
  * Created on Nov 22, 2013, 10:13:48 PM
  */
@@ -23,12 +23,12 @@ import java.util.logging.Logger;
  *
  * @author Cleo
  */
-public class AgregarUsuarioView extends BaseView {
+public class AgregarUsrView extends BaseView {
     private final List<Usuarios> listaUsuarios;
     private final String[] usuario;
 
     /** Creates new form AgregarClienteView */
-    public AgregarUsuarioView(GenericController contr) throws SQLException {
+    public AgregarUsrView(GenericController contr) throws SQLException {
         super(contr);
         initComponents();
         listaUsuarios = ((AgregarUsuarioController) contr).devolverUsuarios();
@@ -106,7 +106,7 @@ public class AgregarUsuarioView extends BaseView {
 
         jSplitPane1.setName("jSplitPane1"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.frre.labii.ProjectGYMApp.class).getContext().getResourceMap(AgregarUsuarioView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.frre.labii.ProjectGYMApp.class).getContext().getResourceMap(AgregarUsrView.class);
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
