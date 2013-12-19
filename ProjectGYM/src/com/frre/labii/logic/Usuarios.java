@@ -19,8 +19,8 @@ public class Usuarios {
     private String email;
     private int dni;
     private String direccion;
-    private int telefono;
-    private int movil;
+    private long telefono;
+    private long movil;
     private boolean sexo;
     private Date fecha_nac;
     private String observaciones;
@@ -73,19 +73,19 @@ public class Usuarios {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 
-    public int getMovil() {
+    public long getMovil() {
         return movil;
     }
 
-    public void setMovil(int movil) {
+    public void setMovil(long movil) {
         this.movil = movil;
     }
 
@@ -119,5 +119,19 @@ public class Usuarios {
         return "Usuario{" + "apellido=" + apellido + ", nombre=" + nombre + ", dni=" + dni + '}';
     }
     
-    
+    public Object[] toTable() {
+        Object[] exportTable = new Object[11];
+        exportTable[0] = this.codigo;
+        exportTable[1] = this.apellido;
+        exportTable[2] = this.nombre;
+        exportTable[3] = this.email;
+        exportTable[4] = this.dni;
+        exportTable[5] = this.direccion;
+        exportTable[6] = this.telefono;
+        exportTable[7] = this.movil;
+        exportTable[8] = this.sexo;
+        exportTable[9] = this.fecha_nac;
+        exportTable[10] = this.observaciones;
+        return exportTable;
+    }
 }

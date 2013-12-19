@@ -11,7 +11,7 @@ import javax.swing.JFrame;
  *
  * @author Cleo
  */
-public class BaseView extends JFrame {
+public class BaseView extends javax.swing.JInternalFrame {
     
     private GenericController controller;
 

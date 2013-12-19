@@ -19,13 +19,13 @@ import java.util.List;
 public class UsuarioTransformer implements Transformer<Usuarios>{
     
     private static final String CODIGO_FIELD = "codigo";
-    private static final String APELLIDO_FIELD = "apellido";
-    private static final String NOMBRE_FIELD = "nombre";
+    private static final String APELLIDOS_FIELD = "Apellidos";
+    private static final String NOMBRE_FIELD = "Nombre";
     private static final String EMAIL_FIELD = "email";
-    private static final String DNI_FIELD = "dni";
-    private static final String DIRECCION_FIELD = "direccion";
-    private static final String TELEFONO_FIELD = "telefono";
-    private static final String MOVIL_FIELD = "movil";
+    private static final String DNI_FIELD = "DNI";
+    private static final String DIRECCION_FIELD = "Direccion";
+    private static final String TELEFONO_FIELD = "Telefono";
+    private static final String MOVIL_FIELD = "Movil";
     private static final String SEXO_FIELD = "sexo";
     private static final String FECHA_NAC_FIELD = "fecha_nac";
     private static final String OBSERVACIONES_FIELD = "observaciones";
@@ -34,13 +34,13 @@ public class UsuarioTransformer implements Transformer<Usuarios>{
     public Usuarios transform(HashMap<String, Object> data) {
        Usuarios usuario = new Usuarios();
        usuario.setCodigo((Integer) data.get(CODIGO_FIELD));
-       usuario.setApellido((String) data.get(APELLIDO_FIELD));
+       usuario.setApellido((String) data.get(APELLIDOS_FIELD));
        usuario.setNombre((String) data.get(NOMBRE_FIELD));
        usuario.setEmail((String) data.get(EMAIL_FIELD));
        usuario.setDni((Integer) data.get(DNI_FIELD));
        usuario.setDireccion((String) data.get(DIRECCION_FIELD));
-       usuario.setTelefono((Integer) data.get(TELEFONO_FIELD));
-       usuario.setMovil((Integer) data.get(MOVIL_FIELD));
+       usuario.setTelefono((Long) data.get(TELEFONO_FIELD));
+       usuario.setMovil((Long) data.get(MOVIL_FIELD));
        usuario.setSexo((Boolean) data.get(SEXO_FIELD));
        usuario.setFecha_nac((Date) data.get(FECHA_NAC_FIELD));
        usuario.setObservaciones((String) data.get(OBSERVACIONES_FIELD));
