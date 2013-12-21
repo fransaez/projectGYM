@@ -23,13 +23,13 @@ public class AgregarUsuarioController extends GenericController {
 
     public void agregarUsuario(String[] valor) throws SQLException {
 
-        ConexionBD.getInstance().insertRecordToTable("INSERT INTO usuarios (Apellidos, Nombre, email, DNI, Direccion, Telefono, Movil, Sexo, fecha_nac, observaciones) VALUES ('" + valor[0] + "', '" + valor[1] + "', '" + valor[2] + "', '" + valor[3] + "', '" + valor[4] + "', '" + valor[5] + "', '" + valor[6] + "', '" + valor[7] + "', '" + valor[8] + "', '" + valor[9] + "')");
+        ConexionBD.getInstance().insertRecordToTable("INSERT INTO usuarios (Apellidos, Nombre, email, DNI, Direccion, Telefono, Movil, sexo, fecha_nac, observaciones) VALUES ('" + valor[0] + "', '" + valor[1] + "', '" + valor[2] + "', '" + valor[3] + "', '" + valor[4] + "', '" + valor[5] + "', '" + valor[6] + "', '" + valor[7] + "', '" + valor[8] + "', '" + valor[9] + "')");
 
     }
 
-    public void eliminarUsuario(int codigo) throws SQLException {
+    public void eliminarUsuario(String codigo) throws SQLException {
 
-        ConexionBD.getInstance().deleteRecordFromTable("DELETE FROM usuarios WHERE codigo = " + codigo + ")");
+        ConexionBD.getInstance().deleteRecordFromTable("DELETE FROM usuarios WHERE codigo = '" + codigo + "'");
 
     }
 

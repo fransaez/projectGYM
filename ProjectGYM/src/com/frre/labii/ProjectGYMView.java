@@ -25,6 +25,8 @@ import javax.swing.JFrame;
  * The application's main frame.
  */
 public class ProjectGYMView extends FrameView {
+    private javax.swing.JButton currentButon = null;
+    private BaseView currentView = null;
 
     public ProjectGYMView(SingleFrameApplication app) {
         super(app);
@@ -142,18 +144,43 @@ public class ProjectGYMView extends FrameView {
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
         jButton3.setName("jButton3"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
         jButton4.setName("jButton4"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText(resourceMap.getString("jButton5.text")); // NOI18N
         jButton5.setName("jButton5"); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText(resourceMap.getString("jButton6.text")); // NOI18N
         jButton6.setName("jButton6"); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.frre.labii.ProjectGYMApp.class).getContext().getActionMap(ProjectGYMView.class, this);
         jButton7.setAction(actionMap.get("quit")); // NOI18N
@@ -301,10 +328,19 @@ public class ProjectGYMView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (this.currentButon != null) {
+            this.currentButon.setEnabled(true);
+        }
+        if (this.currentView != null) {
+            this.currentView.dispose();
+        }
+        this.currentButon = this.jButton1;
+        this.jButton1.setEnabled(false);
         try {
             AgregarUsuarioController controller = new AgregarUsuarioController();
             AgregarUsuarioView au = new AgregarUsuarioView(controller);
             this.jDesktopPane1.add(au);
+            this.currentView = au;
             try {
                 au.setMaximum(true);
             } catch (PropertyVetoException ex) {
@@ -314,7 +350,63 @@ public class ProjectGYMView extends FrameView {
         } catch (SQLException ex) {
             Logger.getLogger(ProjectGYMView.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (this.currentButon != null) {
+            this.currentButon.setEnabled(true);
+        }
+        if (this.currentView != null) {
+            this.currentView.dispose();
+        }
+        this.currentButon = this.jButton3;
+        this.jButton3.setEnabled(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (this.currentButon != null) {
+            this.currentButon.setEnabled(true);
+        }
+        if (this.currentView != null) {
+            this.currentView.dispose();
+        }
+        this.currentButon = this.jButton2;
+        this.jButton2.setEnabled(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (this.currentButon != null) {
+            this.currentButon.setEnabled(true);
+        }
+        if (this.currentView != null) {
+            this.currentView.dispose();
+        }
+        this.currentButon = this.jButton4;
+        this.jButton4.setEnabled(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (this.currentButon != null) {
+            this.currentButon.setEnabled(true);
+        }
+        if (this.currentView != null) {
+            this.currentView.dispose();
+        }
+        this.currentButon = this.jButton5;
+        this.jButton5.setEnabled(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if (this.currentButon != null) {
+            this.currentButon.setEnabled(true);
+        }
+        if (this.currentView != null) {
+            this.currentView.dispose();
+        }
+        this.currentButon = this.jButton6;
+        this.jButton6.setEnabled(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

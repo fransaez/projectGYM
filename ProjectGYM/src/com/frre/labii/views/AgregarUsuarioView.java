@@ -5,15 +5,15 @@
  */
 package com.frre.labii.views;
 
-import com.frre.labii.controllers.AgregarUsuarioController;
-import com.frre.labii.controllers.GenericController;
-import com.frre.labii.logic.Usuarios;
+import com.frre.labii.controllers.*;
+import com.frre.labii.logic.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class AgregarUsuarioView extends BaseView {
@@ -67,6 +67,7 @@ public class AgregarUsuarioView extends BaseView {
         setBorder(null);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.frre.labii.ProjectGYMApp.class).getContext().getResourceMap(AgregarUsuarioView.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
+        setAutoscrolls(true);
         setName("Form"); // NOI18N
 
         jScrollPane1.setBorder(null);
@@ -85,12 +86,22 @@ public class AgregarUsuarioView extends BaseView {
 
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
         jButton3.setName("jButton3"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,6 +131,35 @@ public class AgregarUsuarioView extends BaseView {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AgregarUsuarioController controller = (AgregarUsuarioController) getController();
+        int selectedRow = this.jTable1.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un registro para continuar.");
+        
+        } else {
+            String usrCodigo = modelo.getValueAt(selectedRow, 0).toString();
+            try {
+                controller.eliminarUsuario(usrCodigo);
+                //si logro eliminar, lo elimino de la tabla
+            modelo.removeRow(selectedRow);
+            } catch (SQLException ex) {
+                Logger.getLogger(AgregarUsuarioView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        AgregarUsuarioController controller = (AgregarUsuarioController) getController();
+        try {
+            InsertUsr vistaUsr = new InsertUsr(controller, this);
+            vistaUsr.setLocationRelativeTo(null);
+            vistaUsr.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarUsuarioView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
