@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.frre.labii.views;
 
 import com.frre.labii.controllers.AgregarUsuarioController;
 import com.frre.labii.controllers.GenericController;
 import com.frre.labii.logic.Usuarios;
+import com.frre.labii.logic.EmailValidation;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Atxy2k.CustomTextField.RestrictedTextField;
+import java.awt.Color;
 
 /**
  *
@@ -27,9 +29,29 @@ public class InsertUsr extends BaseView1 {
     /**
      * Creates new form InsertUsr
      */
+    AgregarUsuarioController iuContr;
+
     public InsertUsr(GenericController contr, AgregarUsuarioView au) throws SQLException {
         super(contr);
+        iuContr = (AgregarUsuarioController) contr;
         initComponents();
+        RestrictedTextField jtf2 = new RestrictedTextField(jTextField2);
+        jtf2.setLimit(30);
+        RestrictedTextField jtf3 = new RestrictedTextField(jTextField3);
+        jtf3.setLimit(30);
+        RestrictedTextField jtf4 = new RestrictedTextField(jTextField4);
+        jtf4.setLimit(45);
+        RestrictedTextField jtf5 = new RestrictedTextField(jTextField5);
+        jtf5.setLimit(8);
+        jtf5.setOnlyNums(true);
+        RestrictedTextField jtf6 = new RestrictedTextField(jTextField6);
+        jtf6.setLimit(45);
+        RestrictedTextField jtf7 = new RestrictedTextField(jTextField7);
+        jtf7.setLimit(10);
+        jtf7.setOnlyNums(true);
+        RestrictedTextField jtf8 = new RestrictedTextField(jTextField8);
+        jtf8.setLimit(10);
+        jtf8.setOnlyNums(true);
         auView = au;
     }
 
@@ -123,10 +145,12 @@ public class InsertUsr extends BaseView1 {
 
         jDateChooser1.setName("jDateChooser1"); // NOI18N
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
+        jTextArea1.setColumns(25);
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(3);
         jTextArea1.setName("jTextArea1"); // NOI18N
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -144,56 +168,52 @@ public class InsertUsr extends BaseView1 {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jRadioButton2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField4)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(42, 42, 42)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel7)
-                                            .addGap(25, 25, 25))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel8)
-                                            .addGap(37, 37, 37)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(37, 37, 37)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jRadioButton1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton2))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                                        .addComponent(jTextField8)))))))
-                .addGap(30, 30, 30))
+                            .addComponent(jTextField4)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,40 +227,36 @@ public class InsertUsr extends BaseView1 {
                     .addComponent(jLabel3)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel9)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
@@ -264,15 +280,15 @@ public class InsertUsr extends BaseView1 {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,33 +312,110 @@ public class InsertUsr extends BaseView1 {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         AgregarUsuarioController controller = (AgregarUsuarioController) getController();
         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
-        nuevoUsr[0] = this.jTextField3.getText();
-        nuevoUsr[1] = this.jTextField2.getText();
-        nuevoUsr[2] = this.jTextField4.getText();
-        nuevoUsr[3] = this.jTextField5.getText();
-        nuevoUsr[4] = this.jTextField6.getText();
-        nuevoUsr[5] = this.jTextField7.getText();
-        nuevoUsr[6] = this.jTextField8.getText();
-        if (this.jRadioButton1.isSelected()) {
-            nuevoUsr[7] = "0";
-        } else if (this.jRadioButton2.isSelected()) {
-            nuevoUsr[7] = "1";
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar el sexo para poder continuar.");
-            return;
-        }
-        nuevoUsr[8] = dt1.format(this.jDateChooser1.getDate()).toString();
-        nuevoUsr[9] = this.jTextArea1.getText();
         try {
-            System.out.println("INSERT INTO usuarios (Apellidos, Nombre, email, DNI, Direccion, Telefono, Movil, sexo, fecha_nac, observaciones) VALUES ('" + nuevoUsr[0] + "', '" + nuevoUsr[1] + "', '" + nuevoUsr[2] + "', '" + nuevoUsr[3] + "', '" + nuevoUsr[4] + "', '" + nuevoUsr[5] + "', '" + nuevoUsr[6] + "', '" + nuevoUsr[7] + "', '" + nuevoUsr[8] + "', '" + nuevoUsr[9] + "')");
+            nuevoUsr[0] = this.jTextField3.getText();
+            nuevoUsr[1] = this.jTextField2.getText();
+            nuevoUsr[2] = this.jTextField4.getText();
+            nuevoUsr[3] = this.jTextField5.getText();
+            if (this.validarDNI(nuevoUsr[3])) {
+                JOptionPane.showMessageDialog(rootPane, "No se puede agregar este usuario. Existe otro usuario con el mismo DNI " + nuevoUsr[3]);
+                return;
+            }
+            nuevoUsr[4] = this.jTextField6.getText();
+            nuevoUsr[5] = this.jTextField7.getText();
+            if (nuevoUsr[5].length() == 0) {
+                nuevoUsr[5] = "0";
+            } else if (nuevoUsr[5].length() != 10) {
+                JOptionPane.showMessageDialog(rootPane, "El número de teléfono es invalido. Asegurese de ingresar el código de area sin el 0");
+                return;
+            }
+            nuevoUsr[6] = this.jTextField8.getText();
+            if (nuevoUsr[6].length() == 0) {
+                nuevoUsr[6] = "0";
+            } else if (nuevoUsr[6].length() != 10) {
+                JOptionPane.showMessageDialog(rootPane, "El número de movil es invalido. Asegurese de ingresar el código de area sin el 0 y número sin el 15");
+                return;
+            }
+            if (this.jRadioButton1.isSelected()) {
+                nuevoUsr[7] = "0";
+            } else if (this.jRadioButton2.isSelected()) {
+                nuevoUsr[7] = "1";
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar el sexo para poder continuar.");
+                return;
+            }
+            Date fecha_nac = this.jDateChooser1.getDate();
+            if (fecha_nac == null) {
+                JOptionPane.showMessageDialog(rootPane, "La fecha de nacimiento ingresada es invalida");
+                return;
+            }
+            nuevoUsr[8] = dt1.format(fecha_nac).toString();
+            nuevoUsr[9] = this.jTextArea1.getText();
+            if (nuevoUsr[9].length() > 100) {
+                JOptionPane.showMessageDialog(rootPane, "El texto de \"Observaciones\" es demasiado largo. El maximo permitido es de 100 caraccteres.");
+                return;
+            }
+            byte vacio = this.validarVacios(nuevoUsr);
+            String campo = "";
+            if (vacio >= 0) {
+                switch (vacio) {
+                    case 0:
+                        campo = "El usuario debe tener un apellido";
+                        break;
+                    case 1:
+                        campo = "El usuario debe tener un nombre";
+                        break;
+                    case 2:
+                        campo = "El usuario debe tener un email";
+                        break;
+                    case 3:
+                        campo = "El usuario debe tener un DNI";
+                        break;
+                    case 8:
+                        campo = "No ha seleccionado la fecha de nacimiento";
+                        break;
+                }
+                JOptionPane.showMessageDialog(rootPane, campo);
+                return;
+            }
+            if (this.validarEmail(nuevoUsr[2])) {
+                JOptionPane.showMessageDialog(rootPane, "El email " + nuevoUsr[2] + " no es valido o ya existe.");
+                return;
+            }
             controller.agregarUsuario(nuevoUsr);
-            auView.modelo.addRow(nuevoUsr);
+            auView.cargarUsuarios();
         } catch (SQLException ex) {
             Logger.getLogger(InsertUsr.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private boolean validarEmail(String dat) throws SQLException {
+        EmailValidation em = new EmailValidation();
+        if (!em.validate(dat.trim())) {
+            return true;
+        } else {
+            return iuContr.existValue("email", dat);
+        }
+    }
+
+    private boolean validarDNI(String dat) throws SQLException {
+        return iuContr.existValue("DNI", dat);
+    }
+
+    private byte validarVacios(String[] dat) {
+        byte resul = -1;
+        for (byte i = 0; i < 9; i++) {
+            if (i > 3 && i < 7) {
+                continue;
+            }
+            resul = (dat[i].length() == 0) ? i : resul;
+            if (resul >= 0) {
+                break;
+            }
+        }
+        return resul;
+    }
     private String[] nuevoUsr = new String[10];
     private AgregarUsuarioView auView;
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -19,13 +19,14 @@ import javax.swing.table.DefaultTableModel;
 public class AgregarUsuarioView extends BaseView {
 
     DefaultTableModel modelo;
-    private final List<Usuarios> listaUsuarios;
-    SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
-//    valor = dt1.format(valor);
+    private List<Usuarios> listaUsuarios;
+    AgregarUsuarioController auContr;
+
     
 
     public AgregarUsuarioView(GenericController contr) throws SQLException {
         super(contr);
+        auContr = (AgregarUsuarioController) contr;
         initComponents();
         modelo = new DefaultTableModel();
         modelo.addColumn("Codigo");
@@ -37,16 +38,21 @@ public class AgregarUsuarioView extends BaseView {
         modelo.addColumn("Telefóno");
         modelo.addColumn("Movil");
         modelo.addColumn("Sexo");
-        modelo.addColumn("Feecha nacimiento");
+        modelo.addColumn("F. nacimiento");
         modelo.addColumn("Observaciones");
         
-        listaUsuarios = ((AgregarUsuarioController) contr).devolverUsuarios();
-        int cant = listaUsuarios.size();
-        for (int i = 0; i < cant; i++) {
-            modelo.addRow(listaUsuarios.get(i).toTable());            
-        }
-        
-        this.jTable1.setModel(modelo);
+        this.cargarUsuarios();
+        this.jTable1.getColumnModel().getColumn(0).setPreferredWidth(44);
+        this.jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
+        this.jTable1.getColumnModel().getColumn(2).setPreferredWidth(130);
+        this.jTable1.getColumnModel().getColumn(3).setPreferredWidth(140);
+        this.jTable1.getColumnModel().getColumn(4).setPreferredWidth(56);
+        this.jTable1.getColumnModel().getColumn(5).setPreferredWidth(100);
+        this.jTable1.getColumnModel().getColumn(6).setPreferredWidth(68);
+        this.jTable1.getColumnModel().getColumn(7).setPreferredWidth(68);
+        this.jTable1.getColumnModel().getColumn(8).setPreferredWidth(56);
+        this.jTable1.getColumnModel().getColumn(9).setPreferredWidth(74);
+        this.jTable1.getColumnModel().getColumn(10).setMinWidth(360);
     }
 
     /**
@@ -81,7 +87,9 @@ public class AgregarUsuarioView extends BaseView {
 
             }
         ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.setName("jTable1"); // NOI18N
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
@@ -160,7 +168,21 @@ public class AgregarUsuarioView extends BaseView {
             Logger.getLogger(AgregarUsuarioView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    public void cargarUsuarios() throws SQLException{
+        int cant = this.jTable1.getRowCount();
+        if (cant > 0) {
+            for (int i = cant-1; i >= 0; i--) {
+                modelo.removeRow(i);
+            }
+        }
+        listaUsuarios = auContr.devolverUsuarios();
+        cant = listaUsuarios.size();
+        for (int i = 0; i < cant; i++) {
+            modelo.addRow(listaUsuarios.get(i).toTable());            
+        }
+        
+        this.jTable1.setModel(modelo);        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

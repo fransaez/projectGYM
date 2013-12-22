@@ -6,6 +6,7 @@
 package com.frre.labii.logic;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -120,6 +121,7 @@ public class Usuarios {
     }
     
     public Object[] toTable() {
+        SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
         Object[] exportTable = new Object[11];
         exportTable[0] = this.codigo;
         exportTable[1] = this.apellido;
@@ -127,10 +129,10 @@ public class Usuarios {
         exportTable[3] = this.email;
         exportTable[4] = this.dni;
         exportTable[5] = this.direccion;
-        exportTable[6] = this.telefono;
-        exportTable[7] = this.movil;
-        exportTable[8] = this.sexo;
-        exportTable[9] = this.fecha_nac;
+        exportTable[6] = (this.telefono == 0)?"":this.telefono;
+        exportTable[7] = (this.movil == 0) ?"":this.movil;
+        exportTable[8] = (this.sexo)?"Femenino":"Masculino";
+        exportTable[9] = dt1.format(fecha_nac);
         exportTable[10] = this.observaciones;
         return exportTable;
     }

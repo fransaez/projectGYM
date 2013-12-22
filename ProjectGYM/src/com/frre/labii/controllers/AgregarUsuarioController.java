@@ -80,5 +80,10 @@ public class AgregarUsuarioController extends GenericController {
         return listaUsuarios;
 
     }
+    
+    public boolean existValue(String campo, String valor) throws SQLException {
+        mapa = ConexionBD.getInstance().makeQuery("select " + campo + " from usuarios where " + campo + " = '" + valor + "'");
+        return !mapa.isEmpty();
+    }
 
 }
