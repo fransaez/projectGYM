@@ -68,8 +68,8 @@ public class AgregarUsuarioController extends GenericController {
                 col_name = "observaciones";
                 break;
         }
-        ConexionBD.getInstance().insertRecordToTable("UPDATE usuarios SET " + col_name + " = " + valor + "WHERE codigo = " + codigo + ")");
-
+        System.out.println("UPDATE usuarios SET " + col_name + " = '" + valor + "' WHERE codigo = " + codigo);
+        ConexionBD.getInstance().insertRecordToTable("UPDATE usuarios SET " + col_name + " = '" + valor + "' WHERE codigo = " + codigo);
     }
 
     public List<Usuarios> devolverUsuarios() throws SQLException {
@@ -81,6 +81,15 @@ public class AgregarUsuarioController extends GenericController {
 
     }
     
+        public Usuarios devolverUsuario(String usrCodigo) throws SQLException {
+
+        mapa = ConexionBD.getInstance().makeQuery("select * from usuarios where codigo = '" + usrCodigo + "'");
+        UsuarioTransformer TR = new UsuarioTransformer();
+        List<Usuarios> listaUsuarios = TR.transform(mapa);
+        return listaUsuarios.get(0);
+
+    }
+        
     public boolean existValue(String campo, String valor) throws SQLException {
         mapa = ConexionBD.getInstance().makeQuery("select " + campo + " from usuarios where " + campo + " = '" + valor + "'");
         return !mapa.isEmpty();

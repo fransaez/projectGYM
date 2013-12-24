@@ -22,13 +22,16 @@ public class AgregarUsuarioView extends BaseView {
     private List<Usuarios> listaUsuarios;
     AgregarUsuarioController auContr;
 
-    
-
     public AgregarUsuarioView(GenericController contr) throws SQLException {
         super(contr);
         auContr = (AgregarUsuarioController) contr;
         initComponents();
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int fila, int columna) {
+                return false;
+            }
+        };
         modelo.addColumn("Codigo");
         modelo.addColumn("Apellido");
         modelo.addColumn("Nombre");
@@ -40,7 +43,7 @@ public class AgregarUsuarioView extends BaseView {
         modelo.addColumn("Sexo");
         modelo.addColumn("F. nacimiento");
         modelo.addColumn("Observaciones");
-        
+
         this.cargarUsuarios();
         this.jTable1.getColumnModel().getColumn(0).setPreferredWidth(44);
         this.jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
@@ -102,6 +105,11 @@ public class AgregarUsuarioView extends BaseView {
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
         jButton3.setName("jButton3"); // NOI18N
@@ -145,13 +153,13 @@ public class AgregarUsuarioView extends BaseView {
         int selectedRow = this.jTable1.getSelectedRow();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un registro para continuar.");
-        
+
         } else {
             String usrCodigo = modelo.getValueAt(selectedRow, 0).toString();
             try {
                 controller.eliminarUsuario(usrCodigo);
                 //si logro eliminar, lo elimino de la tabla
-            modelo.removeRow(selectedRow);
+                modelo.removeRow(selectedRow);
             } catch (SQLException ex) {
                 Logger.getLogger(AgregarUsuarioView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -168,20 +176,38 @@ public class AgregarUsuarioView extends BaseView {
             Logger.getLogger(AgregarUsuarioView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-    public void cargarUsuarios() throws SQLException{
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        AgregarUsuarioController controller = (AgregarUsuarioController) getController();
+        try {
+            int selectedRow = this.jTable1.getSelectedRow();
+            if (selectedRow < 0) {
+                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un registro para continuar.");
+            } else {
+                String usrCodigo = modelo.getValueAt(selectedRow, 0).toString();
+                Usuarios usuario = auContr.devolverUsuario(usrCodigo);
+                InsertUsr vistaUsr = new InsertUsr(controller, this, usuario);
+                vistaUsr.setLocationRelativeTo(null);
+                vistaUsr.setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarUsuarioView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+    public void cargarUsuarios() throws SQLException {
         int cant = this.jTable1.getRowCount();
         if (cant > 0) {
-            for (int i = cant-1; i >= 0; i--) {
+            for (int i = cant - 1; i >= 0; i--) {
                 modelo.removeRow(i);
             }
         }
         listaUsuarios = auContr.devolverUsuarios();
         cant = listaUsuarios.size();
         for (int i = 0; i < cant; i++) {
-            modelo.addRow(listaUsuarios.get(i).toTable());            
+            modelo.addRow(listaUsuarios.get(i).toTable());
         }
-        
-        this.jTable1.setModel(modelo);        
+
+        this.jTable1.setModel(modelo);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
